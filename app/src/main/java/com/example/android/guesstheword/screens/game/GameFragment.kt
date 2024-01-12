@@ -135,6 +135,32 @@ class GameFragment : Fragment() {
 
     }
 
+//    // function run when the activity is started
+//    override fun onStart(){
+//        super.onStart()
+//        Log.i("MainActivity","onStart Called")
+//        // to start timer when onStart is called
+//        viewModel.eventPauseTime.observe(viewLifecycleOwner,Observer{hasPaused->
+//            if(hasPaused){
+//                viewModel.onTimeStart()
+//            }
+//
+//        })
+//    }
+//
+//    // function run when the activity is stopped
+//    override fun onStop(){
+//        super.onStop()
+//        Log.i("MainActivity","onStop Called")
+//        // to stop timer when onStop is called
+//        viewModel.eventPauseTime.observe(viewLifecycleOwner,Observer{hasPaused->
+//            if(hasPaused){
+//                viewModel.onTimePause()
+//            }
+//
+//        })
+//    }
+
 //    ______________________moved to model______________________________________________
 //    /**
 //     * Resets the list of words and randomizes the order

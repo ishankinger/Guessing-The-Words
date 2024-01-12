@@ -60,12 +60,16 @@ class GameViewModel : ViewModel() {
     val currentTimeString = Transformations.map(currentTime) { time ->
         "00:"+(time/1000).toString()
     }
+//
+//    // live data of boolean time for pause time when activity is in the background
+//    private val _eventPauseTime = MutableLiveData<Boolean>()
+//    val eventPauseTime : LiveData<Boolean>
+//        get() = _eventPauseTime
 
     // an encapsulated LiveData for the buzz
     private val _buzzer = MutableLiveData<BuzzType>()
     val buzzer : LiveData<BuzzType>
             get() = _buzzer
-
     companion object {
         // These represent different important times
         // This is when the game is over
@@ -88,6 +92,7 @@ class GameViewModel : ViewModel() {
         _word.value = ""
         _eventGameFinish.value = false
         _currentTime.value = COUNTDOWN_TIME
+        //_eventPauseTime.value = true
 
         // function calls move to init so that when viewModel is created they are called
         resetList()
@@ -98,7 +103,9 @@ class GameViewModel : ViewModel() {
 
             // function called for every tick of time
             override fun onTick(millisUntilFinished: Long) {
-                _currentTime.value = (_currentTime).value?.minus(ONE_SECOND)
+                //if(_eventPauseTime.value == true){
+                    _currentTime.value = (_currentTime).value?.minus(ONE_SECOND)
+                //}
                 if(_currentTime.value == DONE){
                     onFinish()
                 }
@@ -190,6 +197,13 @@ class GameViewModel : ViewModel() {
     fun onBuzzComplete(){
         _buzzer.value = BuzzType.NO_BUZZ
     }
+
+//    fun onTimePause(){
+//        _eventPauseTime.value = false
+//    }
+//    fun onTimeStart(){
+//        _eventPauseTime.value = true
+//    }
 
     // on cleared function called when navigate to any other fragment thus destroying fragment
     // associated with game view model
